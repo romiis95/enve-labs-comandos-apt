@@ -1,0 +1,98 @@
+#Las distribuciones de GNU/LINUX tienen un sistema denominado GESTOR o ADMINISTRADOR DE PAQUETES  que permine instalar aplicaciones (llamados paquetes de linux) directamente desde la linea de comandos, si acceder a un apagina concreta, descargar archivos o ejecutarlos. Todo ello se hace de forma automatica, mediante un gestor mencionado, que en distribuciones basadas en DEBIAN se llama ATP(advanced packaging tool).
+Es la forma mas comoda y automatica de instalar paquetes desde una linea de comandos. Tambien tenemos el comando DPKG, que sirve para instala de forma manual los paquetes (es lo que se usa por debajo apt)y, por ultimo tenemos la forma mas manual que existe: compilar el programa de su codigo fuente a un archivo ejecutable.
+
+##COMANDO DESCRIPCION 
+
+**DPKG*
+Gestor de paquetes **deb para instalar aplicaciones debia manualmente.
+
+**apt-get*
+comando de bajo nivel para instalar paquetes y dependencias de forma automatica.
+
+**apt-cache*
+comando de bajo nivel para instalar paquetes y dependencias de forma automatica.
+
+**apt*
+vercion mopderna de gertor de pauetes apt-grt, destinada a usuarios finales.
+
+###INSTALACION MANUAL.
+**El comando dpkg
+
+En linux, mas concretamente en **Debian (O distribuciones de linux basadas en el),en el formato de paquete que se utiliza para instalar un paquete de forma manual,
+se tendria que descargar este archivo **.deb y desde un alinea de comandos escribir 
+ 
+$ dpkg-i nombre_del_archivo.deb
+
+Al igual que instalamos un paquete con parametro -i (install), podemos desintalarlo con el parametro -r(remove) o ver el contenido con -l(list)
+esta instalacion se encargaria de dece,paquetar e instalar pquetes, despues de ocmprobar si tenemos todas las dependencias necesarias instaladas.
+
+
+#### INTALACION AUTOMATICA CON APT.
+ 
+ El gestor de paquetes apt nos permite instalar de forma sencilla aplicaciones y programas atra vez del comando apt o apt-get, si queremos usar el comando de bajo nivel. Una vez dicho esto, sus parametros son mas frecuente de apt:
+
+ **apt update
+ Actualiza la lista de paquetes disponibles desde los respositorios oficiales.
+
+ **apt search 
+ Busca una o varias palablas en la lista de paquetes disponiles.
+
+ **apt list
+ lista todos los paquetes disponibles para instalar o instalados en el sistema.
+
+ **apt intall <paquete>
+ Instala el paquete indicado en el sistema.
+
+ **apt remove <paquete>
+ Desinstala el paquete indicado y elimina sus achivos de configuracion.
+
+**apt purge <paquete>
+Desinstala el paquete indicado y elimina sus archivo de configuracion.
+
+#####ACTUALIZAR LISTA DE PAQUETES
+
+La linea de comandos **apt **update.
+Este comando lo  hará es actualizar la lista de paquetes disponibles para instalar, que puede estar obsoleta si han pasado varios días desde la última vez que lo hicimos, o incluso puede estar vacía si no lo hemos hecho nunca.
+
+$ apt update
+
+Reading package lists... Done
+E: Could not open lock file /var/lib/apt/lists/lock - open (13: Permission denied)
+E: Unable to lock directory /var/lib/apt/lists/
+W: Problem unlinking the file /var/cache/apt/pkgcache.bin - RemoveCaches (13: Permission denied)
+W: Problem unlinking the file /var/cache/apt/srcpkgcache.bin - RemoveCaches (13: Permission denied)
+
+######Buscar paquetes con apt
+Para buscar paquetes con apt, solo tenemos que usar el parámetro apt search seguido de la palabra (o palabras) que queramos buscar:
+
+$ apt search tint2
+
+Sorting... Done
+Full Text Search... Done
+gsimplecal/stable 2.1-1+b1 amd64
+  lightweight GUI calendar application
+
+pnmixer/stable 0.7.2-1 amd64
+  Simple mixer application for system tray
+
+tint2/stable 16.6.1-1 amd64
+  lightweight taskbar
+
+  #####Operaciones de mantenimiento
+Otra de las ventajas de apt, es que también permite realizar tareas de mantenimiento o actualizar nuestro sistema mediante algunos de sus comandos. Los más populares son los siguientes:
+
+**apt upgrade
+Actualiza todos los paquetes instalados que tengan versiones nuevas.
+
+**apt full-upgrade
+Actualiza los paquetes importantes del sistema operativo.
+**apt autoremove
+Elimina paquetes que ya no son necesarios y quedaron en alguna desinstalación.
+
+**apt edit-sources
+Edita los repositorios de donde se obtienen los paquetes (ver más adelante).
+
+####Desinstalar paquetes con apt
+En el caso de que queramos desinstalar un paquete de nuestro sistema, podremos utilizar apt remove seguido del nombre del paquete. Esto eliminará dicho paquete de nuestro sistema, exceptuando los ficheros de configuración que pudieramos haber modificado. En el caso de que desinstalemos un programa sin querer, con volverlo a instalar recuperaremos su configuración habitual.
+
+En el caso de que estemos seguros completamente y/o queramos eliminar por completo la aplicación, incluyendo también los archivos de configuración, podemos utilizar el comando apt purge seguido del nombre del paquete, en lugar de utilizar apt remove.
